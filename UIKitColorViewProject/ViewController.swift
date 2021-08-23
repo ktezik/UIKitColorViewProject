@@ -30,12 +30,18 @@ class ViewController: UIViewController {
     
     @IBAction func redSliderAction() {
         redColorLabel.text = String(redColorSlider.value)
+        
+        mainView.backgroundColor = UIColor(red: CGFloat(redColorSlider.value), green: CGFloat(greenColorSlider.value), blue: CGFloat(blueColorSlider.value), alpha: 1)
     }
     @IBAction func greenSliderAction() {
         greenColorLabel.text = String(greenColorSlider.value)
+        
+        mainView.backgroundColor = UIColor(red: CGFloat(redColorSlider.value), green: CGFloat(greenColorSlider.value), blue: CGFloat(blueColorSlider.value), alpha: 1)
     }
     @IBAction func blueSliderAction() {
         blueColorLabel.text = String(blueColorSlider.value)
+        
+        mainView.backgroundColor = UIColor(red: CGFloat(redColorSlider.value), green: CGFloat(greenColorSlider.value), blue: CGFloat(blueColorSlider.value), alpha: 1)
     }
     
 }
