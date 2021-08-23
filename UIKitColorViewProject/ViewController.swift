@@ -8,12 +8,25 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    @IBOutlet var mainView: UIView!
+    
+    @IBOutlet var redColorLabel: UILabel!
+    @IBOutlet var greenColorLabel: UILabel!
+    @IBOutlet var blueColorLabel: UILabel!
+    
+    @IBOutlet var redColorSlider: UISlider!
+    @IBOutlet var greenColorSlider: UISlider!
+    @IBOutlet var blueColorSlider: UISlider!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        redColorLabel.text = String(redColorSlider.value)
+        greenColorLabel.text = String(greenColorSlider.value)
+        blueColorLabel.text = String(blueColorSlider.value)
     }
-
+    override func viewWillLayoutSubviews() {
+        mainView.layer.cornerRadius = mainView.frame.width / 12
+    }
 
 }
 

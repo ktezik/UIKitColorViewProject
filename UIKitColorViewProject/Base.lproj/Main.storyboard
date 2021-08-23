@@ -122,6 +122,15 @@
                             <constraint firstItem="XZx-tC-XjM" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.684783" id="srb-k8-808"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="blueColorLabel" destination="DIG-Rt-Kuo" id="Zdc-Tq-AXY"/>
+                        <outlet property="blueColorSlider" destination="8Ue-rV-dfL" id="vBS-5Y-Xfl"/>
+                        <outlet property="greenColorLabel" destination="Ur0-EX-8EI" id="n2d-pR-0hS"/>
+                        <outlet property="greenColorSlider" destination="HSY-A3-uOb" id="YJA-tB-tGA"/>
+                        <outlet property="mainView" destination="lvg-8d-qg5" id="lr0-bR-jHa"/>
+                        <outlet property="redColorLabel" destination="fnm-Gn-ckX" id="R3T-mu-yyJ"/>
+                        <outlet property="redColorSlider" destination="9mL-xs-0bt" id="RRn-jY-eNL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
