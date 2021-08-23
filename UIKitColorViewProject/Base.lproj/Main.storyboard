@@ -36,9 +36,12 @@
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.25" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="9mL-xs-0bt">
                                         <rect key="frame" x="47.5" y="0.0" width="238" height="31"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="234" id="Zpj-rQ-1mc"/>
+                                            <constraint firstAttribute="width" constant="234" id="Zpj-rQ-1mc"/>
                                         </constraints>
                                         <color key="minimumTrackTintColor" systemColor="systemRedColor"/>
+                                        <connections>
+                                            <action selector="redSliderAction" destination="BYZ-38-t0r" eventType="valueChanged" id="wsH-Zh-2xM"/>
+                                        </connections>
                                     </slider>
                                 </subviews>
                             </stackView>
@@ -60,9 +63,12 @@
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.25" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="HSY-A3-uOb">
                                         <rect key="frame" x="47.5" y="0.0" width="238" height="31"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="234" id="LsJ-Qj-Izu"/>
+                                            <constraint firstAttribute="width" constant="234" id="LsJ-Qj-Izu"/>
                                         </constraints>
                                         <color key="minimumTrackTintColor" systemColor="systemGreenColor"/>
+                                        <connections>
+                                            <action selector="greenSliderAction" destination="BYZ-38-t0r" eventType="valueChanged" id="8MZ-Ko-b1h"/>
+                                        </connections>
                                     </slider>
                                 </subviews>
                             </stackView>
@@ -78,8 +84,11 @@
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.25" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="8Ue-rV-dfL">
                                         <rect key="frame" x="47.5" y="0.0" width="238" height="31"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="234" id="EBE-mT-v5M"/>
+                                            <constraint firstAttribute="width" constant="234" id="EBE-mT-v5M"/>
                                         </constraints>
+                                        <connections>
+                                            <action selector="blueSliderAction" destination="BYZ-38-t0r" eventType="valueChanged" id="NbR-wG-SmK"/>
+                                        </connections>
                                     </slider>
                                 </subviews>
                             </stackView>

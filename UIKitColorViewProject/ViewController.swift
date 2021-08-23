@@ -27,6 +27,16 @@ class ViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         mainView.layer.cornerRadius = mainView.frame.width / 12
     }
-
+    
+    @IBAction func redSliderAction() {
+        redColorLabel.text = String(redColorSlider.value)
+    }
+    @IBAction func greenSliderAction() {
+        greenColorLabel.text = String(greenColorSlider.value)
+    }
+    @IBAction func blueSliderAction() {
+        blueColorLabel.text = String(blueColorSlider.value)
+    }
+    
 }
 
