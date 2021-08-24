@@ -20,29 +20,43 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        redColorLabel.text = String(redColorSlider.value)
-        greenColorLabel.text = String(greenColorSlider.value)
-        blueColorLabel.text = String(blueColorSlider.value)
+        labelColorVD()
+        
+        redColorLabel.text = backgroundColorVD(from: redColorSlider)
+        greenColorLabel.text = backgroundColorVD(from: greenColorSlider)
+        blueColorLabel.text = backgroundColorVD(from: blueColorSlider)
+        
     }
     override func viewWillLayoutSubviews() {
         mainView.layer.cornerRadius = mainView.frame.width / 12
     }
     
     @IBAction func redSliderAction() {
-        redColorLabel.text = String(redColorSlider.value)
+        redColorLabel.text = backgroundColorVD(from: redColorSlider)
         
-        mainView.backgroundColor = UIColor(red: CGFloat(redColorSlider.value), green: CGFloat(greenColorSlider.value), blue: CGFloat(blueColorSlider.value), alpha: 1)
+        labelColorVD()
     }
     @IBAction func greenSliderAction() {
-        greenColorLabel.text = String(greenColorSlider.value)
+        greenColorLabel.text = backgroundColorVD(from: greenColorSlider)
         
-        mainView.backgroundColor = UIColor(red: CGFloat(redColorSlider.value), green: CGFloat(greenColorSlider.value), blue: CGFloat(blueColorSlider.value), alpha: 1)
+        labelColorVD()
     }
     @IBAction func blueSliderAction() {
-        blueColorLabel.text = String(blueColorSlider.value)
+        blueColorLabel.text = backgroundColorVD(from: blueColorSlider)
         
-        mainView.backgroundColor = UIColor(red: CGFloat(redColorSlider.value), green: CGFloat(greenColorSlider.value), blue: CGFloat(blueColorSlider.value), alpha: 1)
+        labelColorVD()
     }
     
+    private func labelColorVD() {
+        mainView.backgroundColor = UIColor(
+            red: CGFloat(redColorSlider.value),
+            green: CGFloat(greenColorSlider.value),
+            blue: CGFloat(blueColorSlider.value),
+            alpha: 1)
+    }
+    
+    private func backgroundColorVD (from slider: UISlider) -> String {
+        String(format: "%.2F", slider.value)
+    }
 }
 
