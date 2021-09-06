@@ -75,8 +75,8 @@
 		F4F4D88326E6223F002C87A8 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				F423DF2F26D3DEE700EDE783 /* LaunchScreen.storyboard */,
 				F423DF2A26D3DEE600EDE783 /* Main.storyboard */,
+				F423DF2F26D3DEE700EDE783 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -320,7 +320,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z88UC283VS;
-				INFOPLIST_FILE = UIKitColorViewProject/Info.plist;
+				INFOPLIST_FILE = UIKitColorViewProject/App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -339,7 +339,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z88UC283VS;
-				INFOPLIST_FILE = UIKitColorViewProject/Info.plist;
+				INFOPLIST_FILE = UIKitColorViewProject/App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
