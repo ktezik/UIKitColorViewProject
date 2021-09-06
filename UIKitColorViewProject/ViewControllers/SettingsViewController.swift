@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class SettingsViewController: UIViewController {
     @IBOutlet var mainView: UIView!
     
     @IBOutlet var redColorLabel: UILabel!
@@ -18,14 +18,34 @@ class ViewController: UIViewController {
     @IBOutlet var greenColorSlider: UISlider!
     @IBOutlet var blueColorSlider: UISlider!
     
+    var redColorSliderClone: Float!
+    var greenColorSliderClone: Float!
+    var blueColorSliderClone: Float!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        labelColorVD()
+        
+        if let redColor = redColorSliderClone {
+            redColorSlider.value = redColor
+        } else {
+            redColorSlider.value = 0.25
+        }
+        if let greenColor = greenColorSliderClone {
+            greenColorSlider.value = greenColor
+        } else {
+            greenColorSlider.value = 0.25
+        }
+        if let blueColor = blueColorSliderClone {
+            blueColorSlider.value = blueColor
+        } else {
+            blueColorSlider.value = 0.25
+        }
         
         redColorLabel.text = backgroundColorVD(from: redColorSlider)
         greenColorLabel.text = backgroundColorVD(from: greenColorSlider)
         blueColorLabel.text = backgroundColorVD(from: blueColorSlider)
         
+        labelColorVD()
     }
     override func viewWillLayoutSubviews() {
         mainView.layer.cornerRadius = mainView.frame.width / 12
@@ -47,6 +67,10 @@ class ViewController: UIViewController {
         labelColorVD()
     }
     
+}
+
+//MARK: - Extension
+extension SettingsViewController {
     private func labelColorVD() {
         mainView.backgroundColor = UIColor(
             red: CGFloat(redColorSlider.value),
@@ -59,4 +83,3 @@ class ViewController: UIViewController {
         String(format: "%.2F", slider.value)
     }
 }
-
