@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol ViewColorProtocol {
+    func setNewValues(sliderValues red: Float, sliderValues green: Float, sliderValues blue: Float)
+}
+
 class NavigationViewController: UIViewController {
 
     var redColorValue: Float!
@@ -18,17 +22,20 @@ class NavigationViewController: UIViewController {
         settings.redColorSliderClone = redColorValue
         settings.greenColorSliderClone = greenColorValue
         settings.blueColorSliderClone = blueColorValue
+        settings.delegate = self
+    }
+}
+
+extension NavigationViewController: ViewColorProtocol {
+    func setNewValues(sliderValues red: Float, sliderValues green: Float, sliderValues blue: Float) {
+        view.backgroundColor = UIColor(
+            red: CGFloat(red),
+            green: CGFloat(green),
+            blue: CGFloat(blue),
+            alpha: 1)
+        redColorValue = red
+        greenColorValue = green
+        blueColorValue = blue
     }
     
-    @IBAction func unwind(for segue: UIStoryboardSegue) {
-        guard let color = segue.source as? SettingsViewController else { return }
-        view.backgroundColor = UIColor(
-            red: CGFloat(color.redColorSlider.value),
-            green: CGFloat(color.greenColorSlider.value),
-            blue: CGFloat(color.blueColorSlider.value),
-            alpha: 1)
-        redColorValue = color.redColorSlider.value
-        greenColorValue = color.greenColorSlider.value
-        blueColorValue = color.blueColorSlider.value
-    }
 }
