@@ -24,53 +24,32 @@ class SettingsViewController: UIViewController {
     
     var delegate: ViewColorProtocol!
     
-    var redColorSliderClone: Float!
-    var greenColorSliderClone: Float!
-    var blueColorSliderClone: Float!
+    var viewColor: UIColor!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationColorValues()
-        
-        redTextField.text = backgroundColorVD(from: redColorSlider)
-        greenTextField.text = backgroundColorVD(from: greenColorSlider)
-        blueTextField.text = backgroundColorVD(from: blueColorSlider)
-        
-        redColorLabel.text = backgroundColorVD(from: redColorSlider)
-        greenColorLabel.text = backgroundColorVD(from: greenColorSlider)
-        blueColorLabel.text = backgroundColorVD(from: blueColorSlider)
-        
+        navigationViewColor()
+        setLabelsValues()
         labelColorVD()
+        
     }
     override func viewWillLayoutSubviews() {
         mainView.layer.cornerRadius = mainView.frame.width / 12
     }
     
     @IBAction func redSliderAction() {
-        redColorLabel.text = backgroundColorVD(from: redColorSlider)
-        redTextField.text = backgroundColorVD(from: redColorSlider)
-        
         labelColorVD()
     }
     @IBAction func greenSliderAction() {
-        greenColorLabel.text = backgroundColorVD(from: greenColorSlider)
-        greenTextField.text = backgroundColorVD(from: greenColorSlider)
-        
         labelColorVD()
     }
-    
-    
-    
     @IBAction func blueSliderAction() {
-        blueColorLabel.text = backgroundColorVD(from: blueColorSlider)
-        blueTextField.text = backgroundColorVD(from: blueColorSlider)
-        
         labelColorVD()
     }
     
     @IBAction func doneButtonAction() {
-        delegate.setNewValues(sliderValues: redColorSlider.value, sliderValues: greenColorSlider.value, sliderValues: blueColorSlider.value)
+        delegate.setNewValues(mainView.backgroundColor ?? .white)
         dismiss(animated: true)
     }
 }
@@ -83,41 +62,36 @@ extension SettingsViewController: UITextFieldDelegate {
             green: CGFloat(greenColorSlider.value),
             blue: CGFloat(blueColorSlider.value),
             alpha: 1)
+        
+        blueColorLabel.text = backgroundColorVD(from: blueColorSlider)
+        blueTextField.text = backgroundColorVD(from: blueColorSlider)
+        
+        greenColorLabel.text = backgroundColorVD(from: greenColorSlider)
+        greenTextField.text = backgroundColorVD(from: greenColorSlider)
+        
+        redColorLabel.text = backgroundColorVD(from: redColorSlider)
+        redTextField.text = backgroundColorVD(from: redColorSlider)
     }
     
     private func backgroundColorVD (from slider: UISlider) -> String {
         String(format: "%.2F", slider.value)
     }
     
-    private func navigationColorValues() {
-        if let redColor = redColorSliderClone {
-            redColorSlider.value = redColor
-        } else {
-            redColorSlider.value = 0.25
-        }
-        if let greenColor = greenColorSliderClone {
-            greenColorSlider.value = greenColor
-        } else {
-            greenColorSlider.value = 0.25
-        }
-        if let blueColor = blueColorSliderClone {
-            blueColorSlider.value = blueColor
-        } else {
-            blueColorSlider.value = 0.25
-        }
+    private func navigationViewColor() {
+        let ciColor = CIColor(color: viewColor ?? .blue)
+        
+        redColorSlider.value = Float(ciColor.red)
+        greenColorSlider.value = Float(ciColor.green)
+        blueColorSlider.value = Float(ciColor.blue)
     }
-    
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        super.touchesBegan(touches, with: event)
-//        view.endEditing(true)
-//    }
-//    
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        if textField  {
-//            passwordOutlet.becomeFirstResponder()
-//        } else {
-//            performSegue(withIdentifier: "welcomeVC", sender: nil)
-//        }
-//        return true
-//    }
+
+    private func setLabelsValues() {
+        redTextField.text = backgroundColorVD(from: redColorSlider)
+        greenTextField.text = backgroundColorVD(from: greenColorSlider)
+        blueTextField.text = backgroundColorVD(from: blueColorSlider)
+        
+        redColorLabel.text = backgroundColorVD(from: redColorSlider)
+        greenColorLabel.text = backgroundColorVD(from: greenColorSlider)
+        blueColorLabel.text = backgroundColorVD(from: blueColorSlider)
+    }
 }
