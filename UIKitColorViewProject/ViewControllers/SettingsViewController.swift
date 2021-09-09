@@ -8,6 +8,8 @@
 import UIKit
 
 class SettingsViewController: UIViewController {
+    
+    // MARK: - IB Outlets
     @IBOutlet var mainView: UIView!
     
     @IBOutlet var redColorLabel: UILabel!
@@ -22,6 +24,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet var greenTextField: UITextField!
     @IBOutlet var blueTextField: UITextField!
     
+    // MARK: - Public Properties
     var delegate: ViewColorProtocol!
     
     var viewColor: UIColor!
@@ -29,23 +32,36 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationViewColor()
-        labelColorVD()
+        mainView.backgroundColor = viewColor
+        
+        setSliders()
+        
+        setValue(for: redColorLabel, greenColorLabel, blueColorLabel)
+        setValue(for: redTextField, greenTextField, blueTextField)
         
     }
     override func viewWillLayoutSubviews() {
         mainView.layer.cornerRadius = mainView.frame.width / 12
     }
     
-    @IBAction func redSliderAction() {
+    // MARK: - IB Actions
+    @IBAction func rgbSlider(_ sender: UISlider) {
+        
+        switch sender {
+        case redColorSlider:
+            setValue(for: redColorLabel)
+            setValue(for: redTextField)
+        case greenColorSlider:
+            setValue(for: greenColorLabel)
+            setValue(for: greenTextField)
+        default:
+            setValue(for: blueColorLabel)
+            setValue(for: blueTextField)
+        }
+        
         labelColorVD()
     }
-    @IBAction func greenSliderAction() {
-        labelColorVD()
-    }
-    @IBAction func blueSliderAction() {
-        labelColorVD()
-    }
+    
     
     @IBAction func doneButtonAction() {
         delegate.setNewValues(mainView.backgroundColor ?? .white)
@@ -54,32 +70,105 @@ class SettingsViewController: UIViewController {
 }
 
 //MARK: - Extension
-extension SettingsViewController: UITextFieldDelegate {
+extension SettingsViewController {
     private func labelColorVD() {
         mainView.backgroundColor = UIColor(
             red: CGFloat(redColorSlider.value),
             green: CGFloat(greenColorSlider.value),
             blue: CGFloat(blueColorSlider.value),
             alpha: 1)
-        
-        redTextField.text = backgroundColorVD(from: redColorSlider)
-        greenTextField.text = backgroundColorVD(from: greenColorSlider)
-        blueTextField.text = backgroundColorVD(from: blueColorSlider)
-        
-        redColorLabel.text = backgroundColorVD(from: redColorSlider)
-        greenColorLabel.text = backgroundColorVD(from: greenColorSlider)
-        blueColorLabel.text = backgroundColorVD(from: blueColorSlider)
+    }
+    private func setValue(for labels: UILabel...) {
+        labels.forEach { label in
+            switch label {
+            case redColorLabel: label.text = backgroundColorVD(from: redColorSlider)
+            case greenColorLabel: label.text = backgroundColorVD(from: greenColorSlider)
+            default: label.text = backgroundColorVD(from: blueColorSlider)
+            }
+        }
+    }
+    private func setValue(for textFields: UITextField...) {
+        textFields.forEach { textField in
+            switch textField {
+            case redTextField: textField.text = backgroundColorVD(from: redColorSlider)
+            case greenTextField: textField.text = backgroundColorVD(from: greenColorSlider)
+            default: textField.text = backgroundColorVD(from: blueColorSlider)
+            }
+        }
     }
     
-    private func backgroundColorVD (from slider: UISlider) -> String {
-        String(format: "%.2F", slider.value)
-    }
-    
-    private func navigationViewColor() {
-        let ciColor = CIColor(color: viewColor ?? .blue)
+    private func setSliders() {
+        let ciColor = CIColor(color: viewColor)
         
         redColorSlider.value = Float(ciColor.red)
         greenColorSlider.value = Float(ciColor.green)
         blueColorSlider.value = Float(ciColor.blue)
+    }
+
+    private func backgroundColorVD (from slider: UISlider) -> String {
+        String(format: "%.2F", slider.value)
+    }
+    
+    @objc private func didTapDone() {
+        view.endEditing(true)
+    }
+    
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(okAction)
+        present(alert, animated: true)
+    }
+}
+//MARK: - UITextFieldDelegate
+extension SettingsViewController: UITextFieldDelegate {
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        guard let text = textField.text else { return }
+        
+        if let currentValue = Float(text) {
+            switch textField {
+            case redTextField:
+                redColorSlider.setValue(currentValue, animated: true)
+                setValue(for: redColorLabel)
+            case greenTextField:
+                greenColorSlider.setValue(currentValue, animated: true)
+                setValue(for: greenColorLabel)
+            default:
+                blueColorSlider.setValue(currentValue, animated: true)
+                setValue(for: blueColorLabel)
+            }
+            
+            labelColorVD()
+            return
+        }
+        
+        showAlert(title: "Wrong format!", message: "Please enter correct value")
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        let keyboardToolbar = UIToolbar()
+        keyboardToolbar.sizeToFit()
+        textField.inputAccessoryView = keyboardToolbar
+        
+        let doneButton = UIBarButtonItem(
+            barButtonSystemItem: .done,
+            target: self,
+            action: #selector(didTapDone)
+        )
+        
+        let flexBarButton = UIBarButtonItem(
+            barButtonSystemItem: .flexibleSpace,
+            target: nil,
+            action: nil
+        )
+        
+        keyboardToolbar.items = [flexBarButton, doneButton]
     }
 }
