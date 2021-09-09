@@ -124,7 +124,7 @@
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cLF-il-dFG">
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="BYZ-38-t0r" id="aZC-HF-NOS"/>
                                                 </connections>
@@ -132,7 +132,7 @@
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hzC-LB-tds">
                                                 <rect key="frame" x="0.0" y="42" width="50" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="BYZ-38-t0r" id="bWz-5P-drH"/>
                                                 </connections>
@@ -140,7 +140,7 @@
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uoe-0B-edi">
                                                 <rect key="frame" x="0.0" y="84" width="50" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="BYZ-38-t0r" id="jn6-xj-sRn"/>
                                                 </connections>
