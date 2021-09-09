@@ -30,7 +30,6 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         
         navigationViewColor()
-        setLabelsValues()
         labelColorVD()
         
     }
@@ -63,14 +62,13 @@ extension SettingsViewController: UITextFieldDelegate {
             blue: CGFloat(blueColorSlider.value),
             alpha: 1)
         
-        blueColorLabel.text = backgroundColorVD(from: blueColorSlider)
+        redTextField.text = backgroundColorVD(from: redColorSlider)
+        greenTextField.text = backgroundColorVD(from: greenColorSlider)
         blueTextField.text = backgroundColorVD(from: blueColorSlider)
         
-        greenColorLabel.text = backgroundColorVD(from: greenColorSlider)
-        greenTextField.text = backgroundColorVD(from: greenColorSlider)
-        
         redColorLabel.text = backgroundColorVD(from: redColorSlider)
-        redTextField.text = backgroundColorVD(from: redColorSlider)
+        greenColorLabel.text = backgroundColorVD(from: greenColorSlider)
+        blueColorLabel.text = backgroundColorVD(from: blueColorSlider)
     }
     
     private func backgroundColorVD (from slider: UISlider) -> String {
@@ -83,15 +81,5 @@ extension SettingsViewController: UITextFieldDelegate {
         redColorSlider.value = Float(ciColor.red)
         greenColorSlider.value = Float(ciColor.green)
         blueColorSlider.value = Float(ciColor.blue)
-    }
-
-    private func setLabelsValues() {
-        redTextField.text = backgroundColorVD(from: redColorSlider)
-        greenTextField.text = backgroundColorVD(from: greenColorSlider)
-        blueTextField.text = backgroundColorVD(from: blueColorSlider)
-        
-        redColorLabel.text = backgroundColorVD(from: redColorSlider)
-        greenColorLabel.text = backgroundColorVD(from: greenColorSlider)
-        blueColorLabel.text = backgroundColorVD(from: blueColorSlider)
     }
 }
